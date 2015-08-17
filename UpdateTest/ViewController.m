@@ -39,7 +39,8 @@
         NSLog(@"error: %@", [error description]);
         return;
     }
-    NSLog(@"%@", appInfoDic);// 可输出查看回复的信息
+    NSLog(@"%@", appInfoDic);// 可输出查看回复的详细信息
+    
     // 查看具体内容中内容数是否为空
     NSArray *resultsArray = [appInfoDic objectForKey:@"results"];
     if (![resultsArray count]) {
@@ -52,17 +53,17 @@
     self.trackViewUrl = [infoDic objectForKey:@"trackViewUrl"];// 更新的url地址
     
     // 弹出提示框
-    NSString *messageStr = [NSString stringWithFormat:@"发现新版本：%@，是否前往更新？", self.latestVersion];
     if (![currentVersion isEqualToString:self.latestVersion]) {
+        NSString *messageStr = [NSString stringWithFormat:@"发现新版本：%@，是否前往更新？", self.latestVersion];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"更新提示" message:messageStr delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"更新", nil];
-        alert.tag = 10000;
+        alert.tag = 10000;// 标记更新的提示框
         [alert show];
     }
 }
 
 // 提示框的响应
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (alertView.tag == 10000) {
+    if (alertView.tag == 10000) {// 是更新的提示框
         if (buttonIndex == 1) {
             // 前往app store更新
             NSURL *url = [NSURL URLWithString:self.trackViewUrl];
