@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
+@property (strong, nonatomic) NSString *latestVersion;
+@property (strong, nonatomic) NSString *trackViewUrl;
+@property (strong, nonatomic) NSString *trackName;
 
 @end
 
